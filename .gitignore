@@ -38,3 +38,7 @@ evidence/
 *.binlog
 *.log
 *.tsbuildinfo
+
+# Committed coverage reports (see docs/coverage/README.md)
+!docs/coverage/
+!docs/coverage/**

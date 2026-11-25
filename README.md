@@ -46,3 +46,14 @@ dotnet test Vairas.McpServer.slnx
 ```
 
 API exports: `api/`. Extended notes, validation reports and evidence: `../../Documentation/Backend/Vairas.McpServer/`.
+
+## Tests and coverage
+
+Requirements: .NET SDK 10 and Docker (PostgreSQL integration tests start a throw-away container via Testcontainers).
+
+```powershell
+dotnet test Vairas.McpServer.slnx                  # unit + integration tests
+dotnet test Vairas.McpServer.slnx --collect:"XPlat Code Coverage" --settings coverage.runsettings --results-directory TestResults   # measure coverage
+```
+
+**Coverage report:** [docs/coverage/README.md](docs/coverage/README.md) (summary, per-assembly table, least covered files); machine-readable `docs/coverage/coverage-summary.json` and `docs/coverage/index.html` (per-file table). The raw cobertura XML of a local run is written to `TestResults/`.

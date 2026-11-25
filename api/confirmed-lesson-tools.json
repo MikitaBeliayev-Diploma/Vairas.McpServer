@@ -1,0 +1,391 @@
+{
+  "toolContractVersion": "confirmed-lesson-actions/1",
+  "executionProfile": "ConfirmedLessonActionsV1",
+  "modelVisible": false,
+  "tools": [
+    {
+      "name": "create_lesson_booking",
+      "title": null,
+      "description": "Execute or recover one exact server-persisted human-confirmed lesson action. Never available to the language model.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "binding",
+          "arguments",
+          "sourceRevisions"
+        ],
+        "properties": {
+          "binding": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "schoolId",
+              "conversationId",
+              "previewId",
+              "operationId",
+              "identityId",
+              "userId",
+              "sessionId",
+              "kind",
+              "actionDigest",
+              "commandDigest"
+            ],
+            "properties": {
+              "schoolId": {
+                "type": "string"
+              },
+              "conversationId": {
+                "type": "string"
+              },
+              "previewId": {
+                "type": "string"
+              },
+              "operationId": {
+                "type": "string"
+              },
+              "identityId": {
+                "type": "string"
+              },
+              "userId": {
+                "type": "string"
+              },
+              "sessionId": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "actionDigest": {
+                "type": "string"
+              },
+              "commandDigest": {
+                "type": "string"
+              }
+            }
+          },
+          "arguments": {
+            "type": "object"
+          },
+          "sourceRevisions": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "operationId",
+          "status",
+          "lessonId",
+          "version",
+          "code",
+          "httpStatus"
+        ],
+        "properties": {
+          "operationId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Committed",
+              "Rejected",
+              "Unknown"
+            ]
+          },
+          "lessonId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "version": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "httpStatus": {
+            "type": "integer"
+          }
+        }
+      },
+      "annotations": {
+        "title": null,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": false
+      },
+      "icons": null,
+      "_meta": {
+        "toolContractVersion": "confirmed-lesson-actions/1",
+        "executionProfile": "ConfirmedLessonActionsV1"
+      }
+    },
+    {
+      "name": "reschedule_lesson_booking",
+      "title": null,
+      "description": "Execute or recover one exact server-persisted human-confirmed lesson action. Never available to the language model.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "binding",
+          "arguments",
+          "sourceRevisions"
+        ],
+        "properties": {
+          "binding": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "schoolId",
+              "conversationId",
+              "previewId",
+              "operationId",
+              "identityId",
+              "userId",
+              "sessionId",
+              "kind",
+              "actionDigest",
+              "commandDigest"
+            ],
+            "properties": {
+              "schoolId": {
+                "type": "string"
+              },
+              "conversationId": {
+                "type": "string"
+              },
+              "previewId": {
+                "type": "string"
+              },
+              "operationId": {
+                "type": "string"
+              },
+              "identityId": {
+                "type": "string"
+              },
+              "userId": {
+                "type": "string"
+              },
+              "sessionId": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "actionDigest": {
+                "type": "string"
+              },
+              "commandDigest": {
+                "type": "string"
+              }
+            }
+          },
+          "arguments": {
+            "type": "object"
+          },
+          "sourceRevisions": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "operationId",
+          "status",
+          "lessonId",
+          "version",
+          "code",
+          "httpStatus"
+        ],
+        "properties": {
+          "operationId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Committed",
+              "Rejected",
+              "Unknown"
+            ]
+          },
+          "lessonId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "version": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "httpStatus": {
+            "type": "integer"
+          }
+        }
+      },
+      "annotations": {
+        "title": null,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": false
+      },
+      "icons": null,
+      "_meta": {
+        "toolContractVersion": "confirmed-lesson-actions/1",
+        "executionProfile": "ConfirmedLessonActionsV1"
+      }
+    },
+    {
+      "name": "resolve_lesson_action",
+      "title": null,
+      "description": "Execute or recover one exact server-persisted human-confirmed lesson action. Never available to the language model.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "binding",
+          "arguments",
+          "sourceRevisions"
+        ],
+        "properties": {
+          "binding": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "schoolId",
+              "conversationId",
+              "previewId",
+              "operationId",
+              "identityId",
+              "userId",
+              "sessionId",
+              "kind",
+              "actionDigest",
+              "commandDigest"
+            ],
+            "properties": {
+              "schoolId": {
+                "type": "string"
+              },
+              "conversationId": {
+                "type": "string"
+              },
+              "previewId": {
+                "type": "string"
+              },
+              "operationId": {
+                "type": "string"
+              },
+              "identityId": {
+                "type": "string"
+              },
+              "userId": {
+                "type": "string"
+              },
+              "sessionId": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "actionDigest": {
+                "type": "string"
+              },
+              "commandDigest": {
+                "type": "string"
+              }
+            }
+          },
+          "arguments": {
+            "type": "object"
+          },
+          "sourceRevisions": {
+            "type": "object"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "operationId",
+          "status",
+          "lessonId",
+          "version",
+          "code",
+          "httpStatus"
+        ],
+        "properties": {
+          "operationId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Committed",
+              "Rejected",
+              "Unknown"
+            ]
+          },
+          "lessonId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "version": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "httpStatus": {
+            "type": "integer"
+          }
+        }
+      },
+      "annotations": {
+        "title": null,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": false
+      },
+      "icons": null,
+      "_meta": {
+        "toolContractVersion": "confirmed-lesson-actions/1",
+        "executionProfile": "ConfirmedLessonActionsV1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+<Project Sdk="Microsoft.NET.Sdk"><ItemGroup><PackageReference Include="JsonSchema.Net" Version="9.7.0"/><EmbeddedResource Include="Contracts/tool-outputs.json"/></ItemGroup></Project>

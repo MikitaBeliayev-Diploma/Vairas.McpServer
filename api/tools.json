@@ -1,0 +1,652 @@
+{
+  "toolContractVersion": "chat-tools/1",
+  "executionProfile": "PreviewOnlyV1",
+  "tools": [
+    {
+      "name": "get_my_enrollments",
+      "title": null,
+      "description": "Read my enrollments in the selected school.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [],
+        "properties": {}
+      },
+      "outputSchema": {
+        "type": "object",
+        "required": [
+          "enrollments"
+        ],
+        "properties": {
+          "enrollments": {
+            "type": "array",
+            "items": {
+              "required": [
+                "enrollmentId",
+                "schoolId",
+                "studentId",
+                "licenseCategory",
+                "status",
+                "version",
+                "startedAt",
+                "endedAt"
+              ],
+              "type": "object",
+              "properties": {
+                "enrollmentId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "schoolId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "studentId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "licenseCategory": {
+                  "type": "string"
+                },
+                "status": {
+                  "enum": [
+                    "Active",
+                    "Completed",
+                    "Withdrawn",
+                    "Transferred",
+                    "Cancelled"
+                  ]
+                },
+                "version": {
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int64"
+                },
+                "startedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endedAt": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "date-time"
+                },
+                "groupId": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "uuid"
+                },
+                "programVersionId": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "uuid"
+                }
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": null,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "icons": null,
+      "_meta": {
+        "toolContractVersion": "chat-tools/1",
+        "executionProfile": "PreviewOnlyV1"
+      }
+    },
+    {
+      "name": "get_my_lessons",
+      "title": null,
+      "description": "Read my own lessons in a UTC window of at most 31 days.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "from",
+          "to"
+        ],
+        "properties": {
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "type": "object",
+        "required": [
+          "lessons"
+        ],
+        "properties": {
+          "lessons": {
+            "type": "array",
+            "items": {
+              "required": [
+                "lessonId",
+                "schoolId",
+                "kind",
+                "status",
+                "version",
+                "startsAt",
+                "endsAt",
+                "actualStart",
+                "actualEnd",
+                "teacherId",
+                "enrollmentId",
+                "studentId",
+                "vehicleId",
+                "groupId",
+                "groupMembershipRevision"
+              ],
+              "type": "object",
+              "properties": {
+                "lessonId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "schoolId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "kind": {
+                  "enum": [
+                    "Practical",
+                    "Theory"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "Scheduled",
+                    "Completed",
+                    "Cancelled",
+                    "NoShow"
+                  ]
+                },
+                "version": {
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int32"
+                },
+                "startsAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endsAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "actualStart": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "date-time"
+                },
+                "actualEnd": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "date-time"
+                },
+                "teacherId": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "enrollmentId": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "uuid"
+                },
+                "studentId": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "uuid"
+                },
+                "vehicleId": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "uuid"
+                },
+                "groupId": {
+                  "type": [
+                    "null",
+                    "string"
+                  ],
+                  "format": "uuid"
+                },
+                "groupMembershipRevision": {
+                  "pattern": "^-?(?:0|[1-9]\\d*)$",
+                  "type": [
+                    "null",
+                    "integer",
+                    "string"
+                  ],
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": null,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "icons": null,
+      "_meta": {
+        "toolContractVersion": "chat-tools/1",
+        "executionProfile": "PreviewOnlyV1"
+      }
+    },
+    {
+      "name": "get_student_training_progress",
+      "title": null,
+      "description": "Read owner-authorized training progress. Unknown values remain unknown.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "enrollmentId"
+        ],
+        "properties": {
+          "enrollmentId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "required": [
+          "enrollmentId",
+          "theoryMinutes",
+          "practicalMinutes",
+          "percent",
+          "outstandingRequirements",
+          "pendingRecordCount",
+          "disputedRecordCount",
+          "theoryDeficitMinutes",
+          "practicalDeficitMinutes",
+          "dependencyRevision",
+          "sourcesVerified"
+        ],
+        "type": "object",
+        "properties": {
+          "enrollmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "theoryMinutes": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "practicalMinutes": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "percent": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d\u002B)?$",
+            "type": [
+              "null",
+              "number",
+              "string"
+            ],
+            "format": "double"
+          },
+          "outstandingRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "pendingRecordCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "disputedRecordCount": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "theoryDeficitMinutes": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "practicalDeficitMinutes": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "null",
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "dependencyRevision": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int64"
+          },
+          "sourcesVerified": {
+            "type": "boolean"
+          },
+          "state": {
+            "type": "string",
+            "default": "Assigned"
+          }
+        }
+      },
+      "annotations": {
+        "title": null,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "icons": null,
+      "_meta": {
+        "toolContractVersion": "chat-tools/1",
+        "executionProfile": "PreviewOnlyV1"
+      }
+    },
+    {
+      "name": "find_available_lessons",
+      "title": null,
+      "description": "Read provisional slots. Never holds a reservation.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "branchId",
+          "teacherId",
+          "category",
+          "from",
+          "to",
+          "durationMinutes"
+        ],
+        "properties": {
+          "schoolId": {
+            "type": "string"
+          },
+          "branchId": {
+            "type": "string"
+          },
+          "teacherId": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "durationMinutes": {
+            "type": "integer"
+          },
+          "enrollmentId": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          },
+          "vehicleId": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "required": [
+          "schoolId",
+          "slots"
+        ],
+        "type": "object",
+        "properties": {
+          "schoolId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "slots": {
+            "type": "array",
+            "items": {
+              "required": [
+                "startsAt",
+                "endsAt"
+              ],
+              "type": "object",
+              "properties": {
+                "startsAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endsAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      },
+      "annotations": {
+        "title": null,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "icons": null,
+      "_meta": {
+        "toolContractVersion": "chat-tools/1",
+        "executionProfile": "PreviewOnlyV1"
+      }
+    },
+    {
+      "name": "preview_lesson_booking",
+      "title": null,
+      "description": "Prepare an exact advisory booking preview. Only users with the owner\u0027s booking permission can use it.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "branchId",
+          "enrollmentId",
+          "studentId",
+          "teacherId",
+          "vehicleId",
+          "category",
+          "startsAt",
+          "endsAt"
+        ],
+        "properties": {
+          "schoolId": {
+            "type": "string"
+          },
+          "branchId": {
+            "type": "string"
+          },
+          "enrollmentId": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          },
+          "teacherId": {
+            "type": "string"
+          },
+          "vehicleId": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "startsAt": {
+            "type": "string"
+          },
+          "endsAt": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "required": [
+          "previewVersion",
+          "kind",
+          "arguments",
+          "sourceRevisions",
+          "display"
+        ],
+        "type": "object",
+        "properties": {
+          "previewVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "arguments": {},
+          "sourceRevisions": {},
+          "display": {}
+        }
+      },
+      "annotations": {
+        "title": null,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "icons": null,
+      "_meta": {
+        "toolContractVersion": "chat-tools/1",
+        "executionProfile": "PreviewOnlyV1"
+      }
+    },
+    {
+      "name": "preview_lesson_rescheduling",
+      "title": null,
+      "description": "Prepare an exact advisory move preview. No lesson is moved.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "lessonId",
+          "enrollmentId",
+          "expectedVersion",
+          "startsAt",
+          "endsAt",
+          "reason"
+        ],
+        "properties": {
+          "schoolId": {
+            "type": "string"
+          },
+          "lessonId": {
+            "type": "string"
+          },
+          "enrollmentId": {
+            "type": "string"
+          },
+          "expectedVersion": {
+            "type": "integer"
+          },
+          "startsAt": {
+            "type": "string"
+          },
+          "endsAt": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      },
+      "outputSchema": {
+        "required": [
+          "previewVersion",
+          "kind",
+          "arguments",
+          "sourceRevisions",
+          "display"
+        ],
+        "type": "object",
+        "properties": {
+          "previewVersion": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "arguments": {},
+          "sourceRevisions": {},
+          "display": {}
+        }
+      },
+      "annotations": {
+        "title": null,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false,
+        "readOnlyHint": true
+      },
+      "icons": null,
+      "_meta": {
+        "toolContractVersion": "chat-tools/1",
+        "executionProfile": "PreviewOnlyV1"
+      }
+    }
+  ]
+}

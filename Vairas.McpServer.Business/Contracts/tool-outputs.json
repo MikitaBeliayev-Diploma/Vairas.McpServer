@@ -1,0 +1,390 @@
+{
+  "get_my_enrollments": {
+    "type": "object",
+    "required": [
+      "enrollments"
+    ],
+    "properties": {
+      "enrollments": {
+        "type": "array",
+        "items": {
+          "required": [
+            "enrollmentId",
+            "schoolId",
+            "studentId",
+            "licenseCategory",
+            "status",
+            "version",
+            "startedAt",
+            "endedAt"
+          ],
+          "type": "object",
+          "properties": {
+            "enrollmentId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "schoolId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "studentId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "licenseCategory": {
+              "type": "string"
+            },
+            "status": {
+              "enum": [
+                "Active",
+                "Completed",
+                "Withdrawn",
+                "Transferred",
+                "Cancelled"
+              ]
+            },
+            "version": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int64"
+            },
+            "startedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "endedAt": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "format": "date-time"
+            },
+            "groupId": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "format": "uuid"
+            },
+            "programVersionId": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "format": "uuid"
+            }
+          }
+        }
+      }
+    },
+    "additionalProperties": false
+  },
+  "get_my_lessons": {
+    "type": "object",
+    "required": [
+      "lessons"
+    ],
+    "properties": {
+      "lessons": {
+        "type": "array",
+        "items": {
+          "required": [
+            "lessonId",
+            "schoolId",
+            "kind",
+            "status",
+            "version",
+            "startsAt",
+            "endsAt",
+            "actualStart",
+            "actualEnd",
+            "teacherId",
+            "enrollmentId",
+            "studentId",
+            "vehicleId",
+            "groupId",
+            "groupMembershipRevision"
+          ],
+          "type": "object",
+          "properties": {
+            "lessonId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "schoolId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "kind": {
+              "enum": [
+                "Practical",
+                "Theory"
+              ]
+            },
+            "status": {
+              "enum": [
+                "Scheduled",
+                "Completed",
+                "Cancelled",
+                "NoShow"
+              ]
+            },
+            "version": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            },
+            "startsAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "endsAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "actualStart": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "format": "date-time"
+            },
+            "actualEnd": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "format": "date-time"
+            },
+            "teacherId": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "enrollmentId": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "format": "uuid"
+            },
+            "studentId": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "format": "uuid"
+            },
+            "vehicleId": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "format": "uuid"
+            },
+            "groupId": {
+              "type": [
+                "null",
+                "string"
+              ],
+              "format": "uuid"
+            },
+            "groupMembershipRevision": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "null",
+                "integer",
+                "string"
+              ],
+              "format": "int64"
+            }
+          }
+        }
+      }
+    },
+    "additionalProperties": false
+  },
+  "get_student_training_progress": {
+    "required": [
+      "enrollmentId",
+      "theoryMinutes",
+      "practicalMinutes",
+      "percent",
+      "outstandingRequirements",
+      "pendingRecordCount",
+      "disputedRecordCount",
+      "theoryDeficitMinutes",
+      "practicalDeficitMinutes",
+      "dependencyRevision",
+      "sourcesVerified"
+    ],
+    "type": "object",
+    "properties": {
+      "enrollmentId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "theoryMinutes": {
+        "pattern": "^-?(?:0|[1-9]\\d*)$",
+        "type": [
+          "integer",
+          "string"
+        ],
+        "format": "int32"
+      },
+      "practicalMinutes": {
+        "pattern": "^-?(?:0|[1-9]\\d*)$",
+        "type": [
+          "integer",
+          "string"
+        ],
+        "format": "int32"
+      },
+      "percent": {
+        "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+        "type": [
+          "null",
+          "number",
+          "string"
+        ],
+        "format": "double"
+      },
+      "outstandingRequirements": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "pendingRecordCount": {
+        "pattern": "^-?(?:0|[1-9]\\d*)$",
+        "type": [
+          "integer",
+          "string"
+        ],
+        "format": "int32"
+      },
+      "disputedRecordCount": {
+        "pattern": "^-?(?:0|[1-9]\\d*)$",
+        "type": [
+          "integer",
+          "string"
+        ],
+        "format": "int32"
+      },
+      "theoryDeficitMinutes": {
+        "pattern": "^-?(?:0|[1-9]\\d*)$",
+        "type": [
+          "null",
+          "integer",
+          "string"
+        ],
+        "format": "int32"
+      },
+      "practicalDeficitMinutes": {
+        "pattern": "^-?(?:0|[1-9]\\d*)$",
+        "type": [
+          "null",
+          "integer",
+          "string"
+        ],
+        "format": "int32"
+      },
+      "dependencyRevision": {
+        "pattern": "^-?(?:0|[1-9]\\d*)$",
+        "type": [
+          "integer",
+          "string"
+        ],
+        "format": "int64"
+      },
+      "sourcesVerified": {
+        "type": "boolean"
+      },
+      "state": {
+        "type": "string",
+        "default": "Assigned"
+      }
+    }
+  },
+  "find_available_lessons": {
+    "required": [
+      "schoolId",
+      "slots"
+    ],
+    "type": "object",
+    "properties": {
+      "schoolId": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "slots": {
+        "type": "array",
+        "items": {
+          "required": [
+            "startsAt",
+            "endsAt"
+          ],
+          "type": "object",
+          "properties": {
+            "startsAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "endsAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    }
+  },
+  "preview_lesson_booking": {
+    "required": [
+      "previewVersion",
+      "kind",
+      "arguments",
+      "sourceRevisions",
+      "display"
+    ],
+    "type": "object",
+    "properties": {
+      "previewVersion": {
+        "type": "string"
+      },
+      "kind": {
+        "type": "string"
+      },
+      "arguments": {},
+      "sourceRevisions": {},
+      "display": {}
+    }
+  },
+  "preview_lesson_rescheduling": {
+    "required": [
+      "previewVersion",
+      "kind",
+      "arguments",
+      "sourceRevisions",
+      "display"
+    ],
+    "type": "object",
+    "properties": {
+      "previewVersion": {
+        "type": "string"
+      },
+      "kind": {
+        "type": "string"
+      },
+      "arguments": {},
+      "sourceRevisions": {},
+      "display": {}
+    }
+  }
+}
